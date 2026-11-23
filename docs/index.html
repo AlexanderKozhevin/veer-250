@@ -6,7 +6,7 @@
     <meta name="theme-color" content="#f8f5f0" />
     <meta
       name="description"
-      content="Выкройка кожаной сумки «Веер». Корпус высотой 250 мм. Модель Three.js, PDF для печати на A3 и A4, раскладка SVG и пошаговая сборка."
+      content="Выкройка кожаной сумки «Веер». Корпус высотой 250 мм. Модель Three.js, PDF для печати на A3 и A4, раскладка SVG и пошаговая сборка. Материалы, инструменты и расчёт бюджета."
     />
     <title>Веер 250 — выкройка кожаной сумки</title>
     <link rel="icon" href="./assets/fan.svg" type="image/svg+xml" />
@@ -43,7 +43,7 @@
           ><img src="./assets/fan.svg" width="32" height="32" alt="" />Лекало</a
         >
         <nav aria-label="Разделы">
-          <a href="#model">3D-модель</a><a href="#pattern">Раскрой</a><a href="#assembly">Сборка</a>
+          <a href="#model">3D-модель</a><a href="#pattern">Раскрой</a><a href="#shopping">Покупки</a><a href="#assembly">Сборка</a>
         </nav>
         <a
           class="repo"
@@ -206,27 +206,169 @@
           </div>
         </div>
       </section>
+      <section class="shopping wrap" id="shopping" aria-labelledby="shopping-title">
+        <div class="section-head shop-head">
+          <div>
+            <div class="kicker"><span class="rule"></span> Закупка на одну сумку</div>
+            <h2 id="shopping-title">Что купить</h2>
+          </div>
+          <p>Цены в российских магазинах на <time datetime="2026-11-23">23 ноября 2026</time>. <br />Доставка и печать оплачиваются отдельно.</p>
+        </div>
+        <div class="shopping-grid">
+          <div class="supplies">
+            <h3>Материалы</h3>
+            <ul class="supply-items" id="supply-items">
+                <li id="outer-leather" data-rate="26">
+                  <div class="supply-title"><h4>Бордовая кожа для корпуса</h4><span>26 ₽/дм²</span></div>
+                  <p>Гладкая кожа КРС толщиной 1,2–1,4 мм. Нужно 60–70 дм². Карта раскроя занимает 878 × 663 мм. Покажите продавцу раскладку, чтобы обойти рыхлые края и дефекты.</p>
+                  <a href="https://mktrade-nn.ru/katalog/galantereynaya-kozha/kozha-naturalnaya-krs-bordo-gladkaya-1-2-1-4mm/" target="_blank" rel="noopener noreferrer" aria-label="Открыть товар «Бордовая кожа для корпуса» в МК Трейд-НН">МК Трейд-НН <svg aria-hidden="true"><use href="#external" /></svg></a>
+                </li>
+                <li data-cost="180">
+                  <div class="supply-title"><h4>Тонкая кожа для изнанки клапана</h4><span>12 ₽/дм²</span></div>
+                  <p>Спилок цвета коньяка, около 0,8 мм. Для F и двух накладок J нужно 6 дм². В смете отрез 15 дм² за 180 ₽ по базовой ставке. Уточните его форму и итоговую цену.</p>
+                  <a href="https://pava.pro/catalog/kozha_1/kozha_podkladochnaya/kozha-podkladochnaya-spilok-svinoy-konyak/" target="_blank" rel="noopener noreferrer" aria-label="Открыть товар «Тонкая кожа для изнанки клапана» в PAVA">PAVA <svg aria-hidden="true"><use href="#external" /></svg></a>
+                </li>
+                <li data-cost="480">
+                  <div class="supply-title"><h4>Кожкартон для дна</h4><span>от 480 ₽</span></div>
+                  <p>Лист ALTEX толщиной 1 мм. Для детали I хватит ровного обрезка 142 × 116 мм. В смету включён целый лист.</p>
+                  <a href="https://pava.pro/catalog/materialy_aksessuary_/kozhkarton-1-1-75-mm-altex/" target="_blank" rel="noopener noreferrer" aria-label="Открыть товар «Кожкартон для дна» в PAVA">PAVA <svg aria-hidden="true"><use href="#external" /></svg></a>
+                </li>
+                <li data-cost="36">
+                  <div class="supply-title"><h4>Магнитная кнопка Ø 14 мм</h4><span>от 36 ₽</span></div>
+                  <p>Одна зажимная кнопка из двух половин. При заказе проверьте, что к ней есть обе шайбы. Для оттенка фурнитуры на модели подойдут золото или бронза.</p>
+                  <a href="https://pava.pro/catalog/furnitura/zastezhki_zamki/zastezhka-magnitnaya-zazhimnaya-ultratonkaya-14-mm/" target="_blank" rel="noopener noreferrer" aria-label="Открыть товар «Магнитная кнопка Ø 14 мм» в PAVA">PAVA <svg aria-hidden="true"><use href="#external" /></svg></a>
+                </li>
+                <li data-cost="490">
+                  <div class="supply-title"><h4>Бордовая вощёная нить 0,6 мм</h4><span>490 ₽</span></div>
+                  <p>Круглый плетёный полиэстер. Заложите около 30 м на сумку с ручным швом. В смете одна катушка 100 м.</p>
+                  <a href="https://ros-kozha.ru/shop/goods/nit_voschenaya_06_mm_bordovyiy_06-1359" target="_blank" rel="noopener noreferrer" aria-label="Открыть товар «Бордовая вощёная нить 0,6 мм» в РОСКожа">РОСКожа <svg aria-hidden="true"><use href="#external" /></svg></a>
+                </li>
+                <li data-cost="210">
+                  <div class="supply-title"><h4>Клей для кожи Ecostick 1816B</h4><span>от 210 ₽</span></div>
+                  <p>Водный клей для ручки, клапана, припусков и вставки. Выберите фасовку 50 г. Зимой уточните условия доставки у продавца — клей чувствителен к замерзанию.</p>
+                  <a href="https://pava.pro/catalog/khimiya/kley_1816b_poliuretanovyy_ecostick/" target="_blank" rel="noopener noreferrer" aria-label="Открыть товар «Клей для кожи Ecostick 1816B» в PAVA">PAVA <svg aria-hidden="true"><use href="#external" /></svg></a>
+                </li>
+                <li data-cost="150">
+                  <div class="supply-title"><h4>Бордовая краска для уреза</h4><span>от 150 ₽</span></div>
+                  <p>VINCI COLOR, 50 мл. Для открытых торцов ручки, горловины и клапана. В палитре есть бордовый № 2079. Проверьте оттенок на обрезке после высыхания.</p>
+                  <a href="https://pava.pro/catalog/khimiya/kraska-dlya-ureza-vinci-color-glyanets-matovyy/" target="_blank" rel="noopener noreferrer" aria-label="Открыть товар «Бордовая краска для уреза» в PAVA">PAVA <svg aria-hidden="true"><use href="#external" /></svg></a>
+                </li>
+            </ul>
+            <p class="supply-footnote">Металлическая планка на край клапана — по желанию. Сумка закрывается на магнит. Если хотите добавить планку около 50 × 10 мм, подберите ширину её паза по образцу склеенных E и F. В смету входит только магнит.</p>
+          </div>
+          <aside class="buy-side" aria-label="Расчёт бюджета и инструменты">
+            <form class="budget" id="budget">
+              <h3>Бюджет на сумку</h3>
+              <p class="budget-caption">Материалы и выбранные инструменты</p>
+              <output class="budget-total" id="budget-total" aria-live="polite" aria-atomic="true">3 106–3 366 ₽</output>
+              <fieldset class="hide-choice">
+                <legend>Как покупаете основную кожу</legend>
+                <div class="hide-options">
+                  <label><input type="radio" name="hide" value="cut" data-min="60" data-max="70" checked /><span>Отрез в шоуруме</span></label>
+                  <label><input type="radio" name="hide" value="whole" data-min="120" /><span>Полушкура</span></label>
+                </div>
+              </fieldset>
+              <p class="budget-note" id="hide-note">Для отреза 60–70 дм² кожа обойдётся примерно в 1 560–1 820 ₽. Шоурум в Нижнем Новгороде режет по запросу. Размер и цену отреза уточните до оплаты.</p>
+              <fieldset class="tool-choices" id="tools">
+                <legend>Какие инструменты докупить</legend>
+                <p class="tool-hint">Отметьте недостающее. Ссылки с ценами ведут в PAVA.</p>
+                <div class="tool-choice">
+                  <input type="checkbox" id="buy-needles" name="tool" value="139" />
+                  <label for="buy-needles">Седельные иглы<small>Нужны две тупые иглы, в пачке пять.</small></label>
+                  <a href="https://pava.pro/catalog/instrumenty/razmetka_i_shite_1/igly-dlya-sedelnogo-shva-nabor-5-sht-/" target="_blank" rel="noopener noreferrer" aria-label="Купить «Седельные иглы» в PAVA, от 139 ₽">от 139 ₽ <svg aria-hidden="true"><use href="#external" /></svg></a>
+                </div>
+                <div class="tool-choice">
+                  <input type="checkbox" id="buy-awl" name="tool" value="124" />
+                  <label for="buy-awl">Шило<small>Для прокола по точкам выкройки.</small></label>
+                  <a href="https://pava.pro/catalog/instrumenty/razmetka_i_shite_1/shilo-konusnoe-s-derevyannoy-ruchkoy/" target="_blank" rel="noopener noreferrer" aria-label="Купить «Шило» в PAVA, 124 ₽">124 ₽ <svg aria-hidden="true"><use href="#external" /></svg></a>
+                </div>
+                <div class="tool-choice">
+                  <input type="checkbox" id="buy-ruler" name="tool" value="119" />
+                  <label for="buy-ruler">Стальная линейка<small>Длина 30 см, для прямых срезов.</small></label>
+                  <a href="https://pava.pro/catalog/instrumenty/izmeritelnyy_instrument_1/lineyka-metallicheskaya-dvustoronnyaya-30-sm/" target="_blank" rel="noopener noreferrer" aria-label="Купить «Стальная линейка» в PAVA, 119 ₽">119 ₽ <svg aria-hidden="true"><use href="#external" /></svg></a>
+                </div>
+                <div class="tool-choice">
+                  <input type="checkbox" id="buy-knife" name="tool" value="899" />
+                  <label for="buy-knife">Нож-резак<small>Лезвие 9 мм. Подойдёт и свой острый нож.</small></label>
+                  <a href="https://pava.pro/catalog/instrumenty/rezhushchiy_instrument_1/nozh-rezak-universalnyy-9-mm-v-nabore-sdi/" target="_blank" rel="noopener noreferrer" aria-label="Купить «Нож-резак» в PAVA, 899 ₽">899 ₽ <svg aria-hidden="true"><use href="#external" /></svg></a>
+                </div>
+                <div class="tool-choice">
+                  <input type="checkbox" id="buy-mat" name="tool" value="919" />
+                  <label for="buy-mat">Коврик для резки<small>Формат A3, 30 × 45 см.</small></label>
+                  <a href="https://pava.pro/catalog/instrumenty/maty_plity_molotki/mat-a3-dvustoronniy-dlya-rezki-30-45-sm-tsvetnoy-tolshch-3-mm/" target="_blank" rel="noopener noreferrer" aria-label="Купить «Коврик для резки» в PAVA, от 919 ₽">от 919 ₽ <svg aria-hidden="true"><use href="#external" /></svg></a>
+                </div>
+              </fieldset>
+              <div class="tools-subtotal">
+                <span>За инструменты <strong id="tool-total">0 ₽</strong></span>
+                <button type="button" id="choose-tools">Выбрать все пять</button>
+              </div>
+              <p class="estimate-note">Ориентир по базовым ценам и целым упаковкам. Цвет, фасовка и фактическая площадь шкуры могут изменить итог.</p>
+              <noscript><p>Вся полушкура от 120 дм² поднимает бюджет материалов до 4 666 ₽ и выше. Пять базовых инструментов стоят от 2 200 ₽.</p></noscript>
+            </form>
+            <div class="extras">
+              <h4>Что взять с рабочего стола</h4>
+              <p>Плотная бумага и скотч для макета, карандаш, 6 зажимов с прокладками из обрезков, пробка или толстый обрезок под шило, мелкая шкурка P400–P600 и тонкая кисть для торцов. Клей удобно разнести полоской картона, а шов прижать гладкой стороной ложки.</p>
+              <p>Если дома нет зажимов, подойдут <a href="https://pava.pro/catalog/instrumenty/razmetka_i_shite_1/klipsy-dlya-fiksatsii-materiala/" target="_blank" rel="noopener noreferrer">клипсы от 22 ₽ <svg aria-hidden="true"><use href="#external" /></svg></a>. Эти мелочи в расчёт выше не входят.</p>
+              <details class="shop-detail">
+                <summary>Нужен ли строчный пробойник? <svg aria-hidden="true"><use href="#plus" /></svg></summary>
+                <p>Первую сумку можно целиком прошить по точкам шилом. Для следующих изделий подойдут ромбовидные пробойники с шагом 4 мм, на два и четыре зуба. К ним нужны киянка и отдельная плита для пробивки. Цена в магазине указана за один пробойник. <a href="https://pava.pro/catalog/instrumenty/proboyniki_strochnye_1/proboyniki-strochnye-rombovidnye-4-mm-1-10-zubev/" target="_blank" rel="noopener noreferrer">Пробойник от 139 ₽ <svg aria-hidden="true"><use href="#external" /></svg></a> · <a href="https://pava.pro/catalog/instrumenty/maty_plity_molotki/molotok-kiyanka-dlya-tisneniya/" target="_blank" rel="noopener noreferrer">Киянка 799 ₽ <svg aria-hidden="true"><use href="#external" /></svg></a></p>
+              </details>
+            </div>
+          </aside>
+        </div>
+      </section>
       <section class="assembly wrap" id="assembly">
         <div class="section-head">
           <div>
             <div class="kicker"><span class="rule"></span> Работа с кожей</div>
-            <h2>Материалы и сборка</h2>
+            <h2>Как собрать сумку</h2>
           </div>
         </div>
         <div class="workshop-grid">
-          <div class="materials">
-            <h3>Что понадобится</h3>
-            <div id="material-list"></div>
-            <details class="tools">
-              <summary>
-                Инструменты<svg><use href="#plus" /></svg>
-              </summary>
-              <p id="tools-copy"></p>
-            </details>
+          <div class="bench-guide">
+            <h3>Для первой сборки</h3>
+            <p>Начните с бумажного корпуса. Подпишите изнутри «перед», «спинка», «лево» и «право». Когда C–B–A–B–C сходятся в две симметричные половины, у вас есть образец для раскроя кожи.</p>
+            <p>До боковых швов пришейте ручку к плоской спинке. Соберите клапан и обе половины корпуса на столе. Для первой версии достаточно конструктивных швов и магнита. Отделочная строчка вдоль панелей и металлическая планка — по желанию.</p>
+            <div class="thread-guide" id="thread">
+              <h4>Какой нитью шить</h4>
+              <p>Берите круглую вощёную плетёную нить из полиэстера 0,6 мм и две тупые седельные иглы. На короткий шов длиной 15 см отрежьте для пробы 70–80 см нити. Вденьте по игле в каждый конец и выровняйте их после первого отверстия.</p>
+              <p>Проводите обе иглы навстречу друг другу через одно отверстие. Отведите первую нить в сторону, чтобы вторая игла прошла рядом. Подтягивайте с одинаковым усилием и закончите двумя обратными стежками. До ручки попробуйте шов на четырёх слоях обрезков.</p>
+              <a href="https://ros-kozha.ru/shop/goods/nit_voschenaya_06_mm_bordovyiy_06-1359" target="_blank" rel="noopener noreferrer">Бордовая нить 0,6 мм · 490 ₽ <svg aria-hidden="true"><use href="#external" /></svg></a>
+              <details class="shop-detail">
+                <summary>Если нужна короткая намотка <svg aria-hidden="true"><use href="#plus" /></svg></summary>
+                <p>Для ручного шва подойдёт и круглая вощёная Galaces 0,65 мм. Две намотки по 20 м обойдутся от 178 ₽ за обе. При заказе в PAVA сверьте доступный цвет по номеру. В основной смете выбрана бордовая катушка 100 м.</p>
+                <a href="https://pava.pro/catalog/nitki/nit_dlya_kozhi_voshchenaya_0_65_mm_kruglaya_galaces_20_m/" target="_blank" rel="noopener noreferrer">Galaces 20 м · от 89 ₽ <svg aria-hidden="true"><use href="#external" /></svg></a>
+              </details>
+            </div>
           </div>
           <div class="steps">
             <h3>Порядок сборки</h3>
             <div id="steps-list"></div>
+          </div>
+        </div>
+        <div class="pitfalls" id="pitfalls">
+          <h3>Где легко ошибиться</h3>
+          <div class="pitfall-list">
+            <details class="shop-detail">
+              <summary>Как раскроить зеркальные панели?<svg aria-hidden="true"><use href="#plus" /></svg></summary>
+              <p>Для каждой из деталей B и C вырежьте две обычные и две зеркальные копии. Перед резом разложите оба ряда лицом вверх, сравните фактуру и подпишите изнанку. По стачным швам A–D припуск 6 мм уже включён.</p>
+            </details>
+            <details class="shop-detail">
+              <summary>Что делать, если к концу шва разъезжаются отверстия?<svg aria-hidden="true"><use href="#plus" /></svg></summary>
+              <p>Совместите начало, середину и конец двух деталей, закрепите их клипсами через обрезки кожи. На нижней кромке A между крайними точками 158 мм и 40 равных стежков по 3,95 мм. Проколите слои шилом по напечатанным точкам. Так отверстия сойдутся и у последнего угла.</p>
+            </details>
+            <details class="shop-detail">
+              <summary>Как избежать морщин и перекоса клапана?<svg aria-hidden="true"><use href="#plus" /></svg></summary>
+              <p>Установите половину магнита на F до склейки. Уложите E и F вокруг бумажной горловины, дайте слоям принять изгиб и склейте от середины к сторонам. Затем обрежьте запас F в 3 мм по E. Ответную часть на передней A размечайте с закрытым клапаном на собранном корпусе.</p>
+            </details>
+            <details class="shop-detail">
+              <summary>В каком порядке вшивать дно?<svg aria-hidden="true"><use href="#plus" /></svg></summary>
+              <p>На каждой длинной стороне D сначала совместите центр с A, затем участки B и C до острия. На каждом участке закрепите середину и концы, шейте от центра к крыльям. Четыре поперечные линии D обозначают сгибы. Вставку I вклейте уже после выворачивания — только в плоскую середину.</p>
+            </details>
+            <details class="shop-detail">
+              <summary>Как уберечь лицевую кожу от следов?<svg aria-hidden="true"><use href="#plus" /></svg></summary>
+              <p>Попробуйте клей, краску и зажим на обрезке и дайте образцу высохнуть. Для блестящей кожи подкладывайте мягкие лоскуты под губки зажима. Наносите клей тонким слоем внутри припуска. Отделку открытых торцов удобнее делать короткими участками.</p>
+            </details>
           </div>
         </div>
         <p class="design-note">

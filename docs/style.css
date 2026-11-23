@@ -164,7 +164,6 @@ h1,
 h2,
 .piece-title,
 .part-info h3,
-.materials > h3,
 .steps > h3 {
   font-family: var(--serif);
   font-weight: 500;
@@ -540,7 +539,6 @@ h1 {
 }
 .piece-title,
 .part-info h3,
-.materials > h3,
 .steps > h3 {
   font-size: 32px;
   line-height: 1.08;
@@ -596,29 +594,10 @@ h1 {
   grid-template-columns: 0.85fr 1.15fr;
   gap: clamp(36px, 8vw, 140px);
 }
-.materials > h3,
 .steps > h3 {
   font-size: 30px;
   margin-bottom: 18px;
 }
-.materials dl > div {
-  border-bottom: 1px solid var(--line);
-  padding: 11px 0;
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-}
-.materials dt {
-  font-size: 13px;
-  font-weight: 500;
-}
-.materials dd {
-  margin: 0;
-  color: var(--muted);
-  text-align: right;
-  font-size: 12px;
-}
-.tools,
 .steps details {
   border-bottom: 1px solid var(--line);
 }
@@ -635,11 +614,6 @@ summary::-webkit-details-marker {
 summary svg {
   margin-left: auto;
 }
-.tools summary {
-  font-size: 13px;
-  padding: 12px 0;
-}
-.tools p,
 .steps details p {
   color: var(--muted);
   line-height: 1.65;
@@ -659,12 +633,10 @@ summary svg {
 .steps details p {
   margin-left: 32px;
 }
-.steps summary svg,
-.tools summary svg {
+.steps summary svg {
   width: 15px !important;
 }
-.steps details[open] summary svg,
-.tools[open] summary svg {
+.steps details[open] summary svg {
   transform: rotate(45deg);
 }
 .design-note {
@@ -903,9 +875,6 @@ summary svg {
   .section-head h2 {
     max-width: 100%;
   }
-  .materials dd {
-    max-width: 58%;
-  }
   .foot .wrap {
     gap: 10px;
   }
@@ -990,34 +959,371 @@ summary svg {
   }
 }
 
-#material-list details {
+/* Shopping list and workshop notes */
+.shopping {
+  padding-block: 62px;
   border-bottom: 1px solid var(--line);
 }
-#material-list summary {
-  padding: 11px 0;
-  gap: 8px;
+.shop-head {
+  align-items: flex-end;
 }
-#material-list strong {
+.shop-head > p {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.65;
+  text-align: right;
+}
+.shopping-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.22fr) minmax(330px, .85fr);
+  gap: clamp(35px, 6vw, 95px);
+  align-items: start;
+}
+.shopping h3,
+.bench-guide h3,
+.pitfalls h3 {
+  margin: 0;
+  font: 500 34px/1.08 var(--serif);
+  letter-spacing: -.045em;
+}
+.supplies h3 {
+  margin-bottom: 13px;
+}
+.supply-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.supply-items li {
+  padding: 15px 0;
+  border-top: 1px solid var(--line);
+}
+.supply-title {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  justify-content: space-between;
+}
+.supply-title h4,
+.extras h4,
+.thread-guide h4 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.45;
+}
+.supply-title > span {
+  flex: none;
+  color: var(--wine);
+  font-size: 14px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.supply-items p,
+.supply-footnote,
+.extras p,
+.bench-guide p,
+.shop-detail p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.65;
+}
+.supply-items p {
+  margin: 5px 0 3px;
+  max-width: 76ch;
+}
+.supplies a,
+.buy-side a,
+.thread-guide a {
+  color: var(--wine);
+  text-decoration: underline;
+  text-decoration-color: #bb98a1;
+  text-underline-offset: 3px;
+}
+.supplies a:hover,
+.buy-side a:hover,
+.thread-guide a:hover {
+  text-decoration-color: var(--wine);
+}
+.supplies a,
+.thread-guide a {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 12px;
+  font-weight: 500;
+}
+.shopping a svg,
+.thread-guide a svg {
+  width: .91em !important;
+  height: .91em !important;
+  vertical-align: -.06em;
+}
+.supply-footnote {
+  margin-top: 4px;
+  padding: 13px 0 0;
+  border-top: 1px solid var(--line);
+  font-size: 12px;
+}
+.budget {
+  border: 1px solid #d8c9bf;
+  background: #f2eae2;
+  border-radius: 8px;
+  padding: clamp(18px, 2.35vw, 34px);
+}
+.budget h3 {
+  color: #4b3039;
+}
+.budget-caption,
+.budget-note,
+.tool-hint,
+.estimate-note {
+  font-size: 12px;
+  line-height: 1.58;
+  color: #63524f;
+}
+.budget-caption {
+  margin-top: 9px;
+}
+.budget-total {
+  display: block;
+  color: var(--wine);
+  font: 500 clamp(38px, 4.2vw, 63px)/1.15 var(--serif);
+  letter-spacing: -.045em;
+  margin: 1px 0 19px;
+  white-space: nowrap;
+}
+.budget fieldset {
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+.budget legend {
+  padding: 0;
+  color: #422b33;
+  font-size: 14px;
+  font-weight: 600;
+}
+.hide-options {
+  display: flex;
+  background: #e7dcd2;
+  border: 1px solid #d4c6bc;
+  padding: 3px;
+  border-radius: 5px;
+  margin-top: 8px;
+}
+.hide-options label {
+  flex: 1;
+  min-width: 0;
+  position: relative;
+}
+.hide-options input {
+  position: absolute;
+  opacity: 0;
+}
+.hide-options span {
+  min-height: 34px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: center;
+}
+.hide-options :checked + span {
+  color: #fff;
+  background: var(--wine);
+}
+.hide-options :focus-visible + span,
+.tool-choice input:focus-visible {
+  outline: 2px solid #914558;
+  outline-offset: 2px;
+}
+.budget-note {
+  margin: 9px 0 22px;
+}
+.tool-hint {
+  margin: 3px 0 9px;
+}
+.tool-choice {
+  display: grid;
+  grid-template-columns: 16px 1fr auto;
+  gap: 9px;
+  align-items: baseline;
+  padding: 8px 0;
+  border-top: 1px solid #d8cbc2;
+}
+.tool-choice input {
+  width: 15px;
+  height: 15px;
+  align-self: start;
+  margin: 2px 0 0;
+  accent-color: var(--wine);
+}
+.tool-choice label {
+  cursor: pointer;
   font-size: 13px;
   font-weight: 500;
 }
-#material-list summary span {
-  margin-left: auto;
-  text-align: right;
+.tool-choice label small {
+  display: block;
+  color: #665853;
+  font-size: 11px;
+  font-weight: 400;
+}
+.tool-choice a {
+  white-space: nowrap;
   font-size: 12px;
-  color: var(--muted);
 }
-#material-list summary svg {
-  width: 12px !important;
+.tools-subtotal {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  border-top: 1px solid #cebbb2;
+  padding-top: 13px;
+  font-size: 12px;
+}
+.tools-subtotal strong {
+  color: var(--wine);
+  margin-left: 4px;
+  white-space: nowrap;
+}
+.tools-subtotal button {
+  background: none;
+  color: var(--wine);
+  padding: 3px 0;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-size: 12px;
+}
+.estimate-note {
+  margin-top: 12px;
+  font-size: 11px;
+}
+.extras {
+  margin: 20px 2px 0;
+}
+.extras p,
+.bench-guide > p,
+.thread-guide > p {
+  margin-top: 8px;
+}
+.shop-detail summary {
+  font-size: 14px;
+  font-weight: 500;
+  padding: 12px 0;
+  justify-content: space-between;
+}
+.shop-detail summary svg {
   flex: none;
-  margin-left: 1px;
+  width: 15px !important;
 }
-#material-list details[open] svg {
+.shop-detail[open] summary svg {
   transform: rotate(45deg);
 }
-#material-list details p {
-  font-size: 12px;
-  color: var(--muted);
+.extras .shop-detail {
+  border-top: 1px solid var(--line);
+  margin-top: 12px;
+}
+.shop-detail p {
   margin: 0 0 12px;
-  line-height: 1.6;
+}
+.thread-guide {
+  margin-top: 19px;
+  padding: 17px 19px;
+  background: #f1ebe3;
+  border-left: 2px solid #b09190;
+}
+.thread-guide > a {
+  margin-top: 10px;
+}
+.pitfalls {
+  margin-top: 34px;
+}
+.pitfall-list {
+  margin-top: 13px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 clamp(30px, 5vw, 80px);
+  align-items: start;
+}
+.pitfall-list details {
+  border-top: 1px solid var(--line);
+}
+@media (max-width: 810px) {
+  .shopping-grid {
+    grid-template-columns: minmax(0, 1.1fr) minmax(280px, .9fr);
+    gap: 24px;
+  }
+}
+@media (max-width: 680px) {
+  .shopping {
+    padding-block: 34px;
+  }
+  .shop-head {
+    display: block;
+  }
+  .shop-head > p {
+    text-align: left;
+    margin-top: 8px;
+  }
+  .shopping-grid,
+  .pitfall-list {
+    grid-template-columns: 1fr;
+  }
+  .shopping-grid {
+    gap: 28px;
+  }
+  .buy-side {
+    display: contents;
+  }
+  .budget {
+    grid-row: 1;
+  }
+  .extras {
+    margin: 0;
+  }
+  .shop-head > p br {
+    display: none;
+  }
+  .supply-title {
+    gap: 8px;
+  }
+  .shopping h3,
+  .bench-guide h3,
+  .pitfalls h3 {
+    font-size: 30px;
+  }
+}
+@media (max-width: 440px) {
+  .head-inner {
+    gap: 10px;
+  }
+  .head-inner nav {
+    gap: 11px;
+  }
+  .head-inner .repo {
+    display: none;
+  }
+}
+@media (max-width: 350px) {
+  .head-inner nav {
+    gap: 8px;
+    font-size: 10px;
+  }
+}
+.thread-guide .shop-detail {
+  border-top: 1px solid var(--line);
+  margin-top: 13px;
+}
+.thread-guide .shop-detail summary {
+  padding-bottom: 3px;
+  font-size: 13px;
+}
+.thread-guide .shop-detail[open] summary {
+  padding-bottom: 10px;
 }

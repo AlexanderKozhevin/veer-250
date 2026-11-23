@@ -1,4 +1,5 @@
 import workshop from './workshop.json';
+import { setupBudget } from './shopping.js';
 const ns = 'http://www.w3.org/2000/svg';
 const el = (tag, text) => {
   const e = document.createElement(tag);
@@ -179,15 +180,7 @@ function plus() {
   icon.append(svgEl('use', { href: '#plus' }));
   return icon;
 }
-const materialList = document.querySelector('#material-list');
-workshop.materials.forEach(([name, spec, desc]) => {
-  const item = el('details'),
-    summary = el('summary');
-  summary.append(el('strong', name), el('span', spec), plus());
-  item.append(summary, el('p', desc));
-  materialList.append(item);
-});
-document.querySelector('#tools-copy').textContent = workshop.tools;
+setupBudget();
 workshop.steps.forEach(([title, a, b], i) => {
   const item = el('details'),
     summary = el('summary');
