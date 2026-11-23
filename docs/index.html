@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#f8f5f0" />
+    <meta
+      name="description"
+      content="Выкройка кожаной сумки «Веер». Корпус высотой 250 мм. Модель Three.js, PDF для печати на A4, раскладка SVG и пошаговая сборка."
+    />
+    <title>Веер 250 — выкройка кожаной сумки</title>
+    <link rel="icon" href="./assets/fan.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./assets/fonts.css" />
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="preload" href="./assets/model.js" as="script" crossorigin />
+  </head>
+  <body>
+    <svg xmlns="http://www.w3.org/2000/svg" class="symbols" aria-hidden="true">
+      <symbol id="down" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 17v3h16v-3" /></symbol>
+      <symbol id="arrow" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6" /></symbol>
+      <symbol id="external" viewBox="0 0 24 24"><path d="M6 18 18 6M7 6h11v11" /></symbol>
+      <symbol id="orbit" viewBox="0 0 24 24">
+        <ellipse cx="12" cy="12" rx="10" ry="4" transform="rotate(-30 12 12)" />
+        <circle cx="12" cy="12" r="3" />
+      </symbol>
+      <symbol id="ruler" viewBox="0 0 24 24">
+        <path d="m3 15 12-12 6 6L9 21Zm7-6 3 3m0-6 2 2m-8 4 2 2" />
+      </symbol>
+      <symbol id="reset" viewBox="0 0 24 24"><path d="M5 9a7.5 7.5 0 1 1-.2 5M5 3v6h6" /></symbol>
+      <symbol id="plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" /></symbol>
+      <symbol id="github" viewBox="0 0 24 24">
+        <path
+          fill="currentColor"
+          stroke="none"
+          d="M12 .9a11.1 11.1 0 0 0-3.5 21.6c.55.1.76-.24.76-.54v-2.1c-3.1.66-3.75-1.3-3.75-1.3-.5-1.28-1.23-1.62-1.23-1.62-1.02-.7.08-.68.08-.68 1.12.08 1.71 1.15 1.71 1.15 1 1.71 2.63 1.21 3.27.93.1-.72.39-1.21.71-1.5-2.48-.28-5.09-1.24-5.09-5.51 0-1.22.44-2.21 1.15-2.98-.12-.28-.5-1.41.1-2.94 0 0 .94-.3 3.05 1.14a10.55 10.55 0 0 1 5.55 0c2.11-1.44 3.04-1.14 3.04-1.14.61 1.53.23 2.66.11 2.94.72.77 1.15 1.76 1.15 2.98 0 4.29-2.61 5.22-5.1 5.5.4.35.76 1.03.76 2.08v3.05c0 .3.2.65.77.54A11.1 11.1 0 0 0 12 .9Z"
+        />
+      </symbol>
+    </svg>
+    <a class="skip" href="#model">К модели</a>
+    <header class="site-head">
+      <div class="wrap head-inner">
+        <a class="brand" href="#model" aria-label="Лекало, к началу"
+          ><img src="./assets/fan.svg" width="32" height="32" alt="" />Лекало</a
+        >
+        <nav aria-label="Разделы">
+          <a href="#model">3D-модель</a><a href="#pattern">Раскрой</a><a href="#assembly">Сборка</a>
+        </nav>
+        <a
+          class="repo"
+          href="https://github.com/AlexanderKozhevin/veer-250"
+          aria-label="Исходники на GitHub"
+          ><svg><use href="#github" /></svg><span>GitHub</span></a
+        >
+      </div>
+    </header>
+    <main>
+      <section class="hero wrap" id="model">
+        <div class="hero-copy">
+          <div class="kicker"><span class="rule"></span> Выкройка кожаной сумки</div>
+          <h1>Веер<span class="title-num">250</span></h1>
+          <p class="intro">
+            Десять кожаных панелей расходятся от узкой горловины и образуют два крыла. Сверху&nbsp;—
+            арочная ручка и мягко скруглённый клапан.
+          </p>
+          <div class="hero-actions">
+            <a class="btn primary" href="./downloads/veer-250-a4.pdf" download
+              ><svg><use href="#down" /></svg>Выкройка A4</a
+            ><a class="text-action" href="#assembly"
+              >Как собрать <svg><use href="#arrow" /></svg
+            ></a>
+          </div>
+          <div class="specs">
+            <div>
+              <strong>250<small> мм</small></strong
+              ><span>Высота корпуса</span>
+            </div>
+            <div>
+              <strong>400<small> мм</small></strong
+              ><span>Ширина</span>
+            </div>
+            <div>
+              <strong>136<small> мм</small></strong
+              ><span>Глубина</span>
+            </div>
+          </div>
+          <p class="handle-note">Полная высота с ручкой — 350 мм.</p>
+        </div>
+        <figure class="viewer" id="viewer" aria-label="Интерактивная модель кожаной сумки">
+          <div class="stage-top">
+            <span class="material-label"><i></i> Вишнёвая кожа</span>
+            <div class="stage-tools">
+              <button
+                id="dimensions"
+                type="button"
+                aria-label="Показать размеры корпуса"
+                aria-pressed="false"
+                title="Размеры корпуса"
+              >
+                <svg><use href="#ruler" /></svg>
+              </button>
+              <button
+                id="reset-view"
+                type="button"
+                aria-label="Вернуть исходный вид"
+                title="Исходный вид"
+              >
+                <svg><use href="#reset" /></svg>
+              </button>
+            </div>
+          </div>
+          <div class="stage" id="stage">
+            <img
+              class="poster"
+              id="poster"
+              src="./assets/elevation.svg"
+              alt="Вишнёвая сумка с двумя боковыми крыльями и арочной ручкой"
+            />
+            <canvas
+              id="scene"
+              tabindex="0"
+              aria-label="Трёхмерная сумка. Вращение мышью или стрелками, масштаб клавишами плюс и минус."
+            ></canvas
+            ><svg id="measurements" aria-hidden="true"></svg>
+          </div>
+          <figcaption class="stage-bottom">
+            <span class="orbit-hint" id="orbit-hint"
+              ><svg><use href="#orbit" /></svg>Поверните модель</span
+            >
+            <div class="view-switch" role="group" aria-label="Состояние модели">
+              <button type="button" data-mode="closed" aria-pressed="true">В сборе</button
+              ><button type="button" data-mode="open" aria-pressed="false">Открыть</button
+              ><button type="button" data-mode="exploded" aria-pressed="false">Разобрать</button>
+            </div>
+          </figcaption>
+          <span id="viewer-status" class="sr" aria-live="polite"></span>
+        </figure>
+      </section>
+      <section class="pattern-section" id="pattern">
+        <div class="wrap">
+          <div class="section-head">
+            <div>
+              <div class="kicker"><span class="rule"></span> Детали в натуральную величину</div>
+              <h2>Раскрой</h2>
+            </div>
+            <a class="btn secondary" href="./downloads/veer-250-kit.zip" download
+              ><svg><use href="#down" /></svg>Комплект PDF и SVG</a
+            >
+          </div>
+          <div class="pattern-grid">
+            <div class="pattern-menu">
+              <p class="select-label">Выберите деталь</p>
+              <div class="parts-list" id="parts-list"></div>
+            </div>
+            <div class="pattern-card">
+              <div class="pattern-card-head">
+                <span id="piece-code"></span><span id="piece-size"></span>
+              </div>
+              <svg id="draft" role="img" aria-label="Чертёж выбранной детали"></svg>
+              <div class="draft-bottom">
+                <span><b class="legend-line"></b>Рез</span
+                ><span><b class="legend-line stitch"></b>Шов</span
+                ><span><b class="legend-line fold"></b>Разметка</span>
+              </div>
+            </div>
+            <div class="part-info">
+              <div class="piece-title" id="piece-title"></div>
+              <p id="piece-note"></p>
+              <div id="piece-meta" class="piece-meta"></div>
+              <div id="layout-options">
+                <label for="material-choice">Материал раскладки</label
+                ><select id="material-choice">
+                  <option value="outer">Основная кожа</option>
+                  <option value="thin">Тонкая кожа</option>
+                  <option value="board">Уплотнитель дна</option></select
+                ><a class="vector-link" id="cut-link" href="./downloads/outer-cut.svg" download
+                  >Контуры SVG <svg><use href="#down" /></svg
+                ></a>
+              </div>
+              <div class="print-tip">
+                <h3>Перед раскроем</h3>
+                <p>
+                  Печатайте при 100 %. На первом листе проверьте квадрат 50 × 50 мм. Дно склеивается
+                  из двух листов по крестам.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="file-rows">
+            <a href="./downloads/veer-250-a4.pdf" download
+              ><span>Лекала для принтера<small>10 листов A4 · масштаб 1:1</small></span
+              ><svg><use href="#down" /></svg
+            ></a>
+            <a href="./downloads/veer-250-kit.zip" download
+              ><span>Полная раскладка<small>20 деталей · SVG по материалам, PDF</small></span
+              ><svg><use href="#down" /></svg
+            ></a>
+            <a href="./downloads/veer-250-guide.pdf" download
+              ><span>Инструкция для мастерской<small>6 страниц · материалы и сборка</small></span
+              ><svg><use href="#down" /></svg
+            ></a>
+          </div>
+        </div>
+      </section>
+      <section class="assembly wrap" id="assembly">
+        <div class="section-head">
+          <div>
+            <div class="kicker"><span class="rule"></span> Работа с кожей</div>
+            <h2>Материалы и сборка</h2>
+          </div>
+        </div>
+        <div class="workshop-grid">
+          <div class="materials">
+            <h3>Что понадобится</h3>
+            <div id="material-list"></div>
+            <details class="tools">
+              <summary>
+                Инструменты<svg><use href="#plus" /></svg>
+              </summary>
+              <p id="tools-copy"></p>
+            </details>
+          </div>
+          <div class="steps">
+            <h3>Порядок сборки</h3>
+            <div id="steps-list"></div>
+          </div>
+        </div>
+        <p class="design-note">
+          Выкройка построена по фронтальному фото. Глубина, устройство дна и крепления разработаны
+          для этой версии. Длины 20 пар швов проверены расчётом. Перед раскроем кожи соберите
+          бумажный макет.
+        </p>
+      </section>
+    </main>
+    <footer class="foot">
+      <div class="wrap">
+        <a class="brand" href="#model"
+          ><img src="./assets/fan.svg" alt="" width="25" height="25" />Лекало</a
+        ><span>Веер 250 · выкройка и 3D-модель</span
+        ><a href="https://github.com/AlexanderKozhevin/veer-250"
+          >GitHub <svg><use href="#external" /></svg
+        ></a>
+      </div>
+    </footer>
+    <noscript
+      ><p>
+        Для интерактивной модели включите JavaScript. Выкройку и инструкцию можно скачать по ссылкам
+        на странице.
+      </p></noscript
+    >
+    <script type="module" src="./assets/app.js"></script>
+  </body>
+</html>
