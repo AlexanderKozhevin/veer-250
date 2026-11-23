@@ -1,4 +1,5 @@
 import { build } from 'esbuild';
+import { createHash } from 'node:crypto';
 import { mkdir, copyFile, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -67,3 +68,15 @@ await build({
   target: ['es2022'],
   external: ['./model.js'],
 });
+
+// Returning visitors can have an earlier copy of the stylesheet or UI script in the Pages cache.
+const indexFile = 'docs/index.html';
+let index = await readFile(indexFile, 'utf8');
+for (const asset of ['style.css', 'assets/app.js']) {
+  const hash = createHash('sha256').update(await readFile('docs/' + asset)).digest('hex').slice(0, 10);
+  const url = './' + asset;
+  index = index.split('"').map((value) =>
+    value.split('?')[0] === url ? url + '?v=' + hash : value,
+  ).join('"');
+}
+await writeFile(indexFile, index);
