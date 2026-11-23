@@ -89,9 +89,37 @@ def verify_pdf():
             abs(float(p.mediabox.width) / pt - w) < 0.002
             and abs(float(p.mediabox.height) / pt - h) < 0.002
         )
+    verify_calibration(pdf.pages[0])
+    a3 = PdfReader(DOWNLOAD / "veer-250-a3.pdf")
+    assert len(a3.pages) == 4
+    verify_calibration(a3.pages[0])
+    parts = make()["parts"]
+    for page, ids in zip(a3.pages, ["GIHJ", "ABC", "D", "EF"]):
+        assert (
+            abs(float(page.mediabox.width) / pt - 420) < 0.002
+            and abs(float(page.mediabox.height) / pt - 297) < 0.002
+        )
+        contours = printed_cuts(page)
+        assert len(contours) == len(ids)
+        for shape, key in zip(contours, ids):
+            reference = parts[key]["cut"]
+            assert len(shape) == len(reference)
+            assert (
+                max(
+                    abs(math.dist(*a) - math.dist(*b))
+                    for a, b in zip(edges(shape), edges(reference))
+                )
+                < 0.002
+            )
+            assert all(8 < x < 412 and 8 < y < 289 for x, y in shape)
+    assert len(PdfReader(DOWNLOAD / "veer-250-guide.pdf").pages) == 6
+
+
+def verify_calibration(page):
+    pt = 72 / 25.4
     paths = []
     current = []
-    for operands, op in pdf.pages[0].get_contents().operations:
+    for operands, op in page.get_contents().operations:
         if op == b"m":
             current = [tuple(map(float, operands))]
         if op == b"l":
@@ -108,14 +136,56 @@ def verify_pdf():
         for q in paths
     )
     assert any(len(q) == 2 and abs(length(q) - 100) < 0.002 for q in paths)
-    assert len(PdfReader(DOWNLOAD / "veer-250-guide.pdf").pages) == 6
+
+
+def printed_cuts(page):
+    # ReportLab composes the rotation into a single matrix; stroke width distinguishes cut from marks.
+    scale = 72 / 25.4
+    matrix = (1, 0, 0, 1, 0, 0)
+    stack = []
+    contours = []
+    points = []
+    stroke = 0
+    closed = False
+    for args, op in page.get_contents().operations:
+        if op == b"q":
+            stack.append((matrix, stroke))
+        elif op == b"Q":
+            matrix, stroke = stack.pop()
+        elif op == b"cm":
+            a, b, c, d, e, f = map(float, args)
+            A, B, C, D, E, F = matrix
+            matrix = (
+                A * a + C * b,
+                B * a + D * b,
+                A * c + C * d,
+                B * c + D * d,
+                A * e + C * f + E,
+                B * e + D * f + F,
+            )
+        elif op == b"w":
+            stroke = float(args[0]) / scale
+        elif op in (b"m", b"l"):
+            if op == b"m":
+                points = []
+                closed = False
+            a, b, c, d, e, f = matrix
+            x, y = map(float, args)
+            points.append(((a * x + c * y + e) / scale, (b * x + d * y + f) / scale))
+        elif op == b"h":
+            closed = True
+        elif op == b"S" and closed and abs(stroke - 0.34) < 0.0001:
+            contours.append(points)
+            closed = False
+    return contours
 
 
 def bundle():
     layout_note = """ВЕЕР / 250 — комплект мастерской
 
-01_Лекала_A4.pdf — 10 листов. Печать 100 %. На листе 1 измерьте квадрат 50 × 50 мм и линейку 100 мм.
-02_Сборка.pdf — материалы и восемь шагов сборки.
+01_Лекала_A3.pdf — 4 альбомных листа, все шаблоны целиком.
+02_Лекала_A4.pdf — 10 листов. Печать 100 %. На листе 1 измерьте квадрат 50 × 50 мм и линейку 100 мм.
+03_Сборка.pdf — материалы и восемь шагов сборки.
 
 SVG-CUT — только замкнутые контуры в натуральную величину, все копии уже разложены.
 SVG-MAP — те же листы с обозначениями, линиями шва, контрольными метками и сгибами. Используйте для переноса разметки.
@@ -131,8 +201,9 @@ https://github.com/AlexanderKozhevin/veer-250
 """
     files = {
         "Начните здесь.txt": layout_note.encode(),
-        "01_Лекала_A4.pdf": (DOWNLOAD / "veer-250-a4.pdf").read_bytes(),
-        "02_Сборка.pdf": (DOWNLOAD / "veer-250-guide.pdf").read_bytes(),
+        "01_Лекала_A3.pdf": (DOWNLOAD / "veer-250-a3.pdf").read_bytes(),
+        "02_Лекала_A4.pdf": (DOWNLOAD / "veer-250-a4.pdf").read_bytes(),
+        "03_Сборка.pdf": (DOWNLOAD / "veer-250-guide.pdf").read_bytes(),
     }
     for k in ("outer", "thin", "board"):
         for tag in ("cut", "map"):
@@ -146,7 +217,7 @@ https://github.com/AlexanderKozhevin/veer-250
             entry.compress_type = ZIP_DEFLATED
             z.writestr(entry, content)
     with ZipFile(target) as z:
-        assert z.testzip() is None and len(z.namelist()) == 9
+        assert z.testzip() is None and len(z.namelist()) == 10
 
 
 if __name__ == "__main__":
@@ -156,5 +227,5 @@ if __name__ == "__main__":
     verify_pdf()
     bundle()
     print(
-        "20 paired seams, 20 full-size cut contours, A4 calibration and 9 kit entries verified."
+        "20 paired seams, 20 full-size cut contours, A3/A4 calibration, all ten uncut A3 templates and 10 kit entries verified."
     )

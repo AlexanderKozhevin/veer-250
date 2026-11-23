@@ -566,7 +566,7 @@ h1 {
 }
 .file-rows {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 23px;
   margin-top: 31px;
 }
